@@ -2,27 +2,27 @@ if('Ti' in this){
 (function(){    
 window._XMLHttpRequest = window.XMLHttpRequest;
 Ti.App.addEventListener('xhr_web', function(e){
-    var args = e.args, xid = e.xid;
+    var args = e.args, xid = e.xid, xhr, funcs, i;
      switch(e.action){
          case 'onload':
-         var xhr = xhrs[xid];
+         xhr = xhrs[xid];
          xhr.responseText = args.responseText;
-         var funcs = xhr.events['load'] ||  [];
+         funcs = xhr.events.load ||  [];
          if(xhr.onload){
              funcs.push(xhr.onload);
          }
-         for(var i = 0, len = funcs.length; i < len; i++){
+         for(i = 0, len = funcs.length; i < len; i++){
              funcs[i].call(xhr, args.responseText);
          }
          break;
          
          case 'error':
-         var xhr = xhrs[xid];
-         var funcs = xhr.events['error'] ||  [];
+         xhr = xhrs[xid];
+         funcs = xhr.events.error ||  [];
          if(xhr.onerror){
              funcs.push(xhr.onerror);
          }
-         for(var i = 0, len = funcs.length; i < len; i++){
+         for(i = 0, len = funcs.length; i < len; i++){
              funcs[i].call(xhr, args.e);
          }
          break;

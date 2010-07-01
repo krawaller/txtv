@@ -53,7 +53,7 @@ Ti.App.addEventListener('xhr_app', function(e){
                             }
                         });
                     }
-                }
+                };
                 break;
                 
             case 'open':
@@ -84,8 +84,8 @@ Ti.App.addEventListener('xhr_app', function(e){
                 xhr.abort();
                 break;
         }
-    } catch(e){
-        console.log('errooor', e);
+    } catch(error){
+        console.log('errooor', error);
     }
 });
 })();

@@ -19,7 +19,7 @@ var webview = Ti.UI.createWebView({
 });
 win.add(webview);
 
-win.open();
+win.open({fullscreen: true});
 
 
 
@@ -93,14 +93,14 @@ var xhrProcessor = function(data){
             .replace(/background: url.*?\.gif\)/g, '') // Remove ugly background images
             .replace(/href="(\d{3}).html"/g, function(all, sub){ 
                 return 'href="#" rel="'+sub+'"';
-            })
+            });
     
     return {
         data: rawString,
         prev: previousPage,
         next: nextPage
     };
-}
+};
 Ti.include('js/xhr_cross_domain_app.js');
 
 
